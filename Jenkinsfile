@@ -1,14 +1,18 @@
 pipeline {
     agent any
+    tools {
+        maven 'maven3.8'
+    }
     stages {
         stage('Hello World') {
             steps {
                 echo 'Hello World'
             }
         }
-        stage('Hello UnderWorld'){
+        stage('Build') {
             steps {
-                echo 'Hello UnderWorld'
+                echo 'Build stage...'
+                mvn clean install -DskipTests
             }
         }
     }
