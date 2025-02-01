@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        // maven 'maven3.9.9',
+        maven 'maven3.9.9',
         jdk 'jdk23'
     }
     stages {
@@ -15,6 +15,14 @@ pipeline {
                 sh '''
                 echo "JAVA_HOME: $JAVA_HOME"
                 java -version
+                '''
+            }
+        }
+        stage('Print Maven Version'){
+            steps {
+                sh '''
+                echo "Maven Version"
+                maven -version
                 '''
             }
         }
