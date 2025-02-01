@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         maven 'maven3.9.9'
-        // jdk 'jdk23'
+        jdk 'jdk23'
     }
     stages {
         stage('Hello World') {
@@ -24,6 +24,11 @@ pipeline {
                 echo "Maven Version"
                 mvn -version
                 '''
+            }
+        }
+        stage('Clone repo'){
+            steps{
+                checkout scm: scmGit(branches: [[name: '*/main']], extensions: [], user)
             }
         }
         stage('Build') {
