@@ -22,7 +22,7 @@ pipeline {
             steps {
                 sh '''
                 echo "Maven Version"
-                maven -version
+                mvn -version
                 '''
             }
         }
