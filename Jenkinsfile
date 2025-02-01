@@ -18,14 +18,14 @@ pipeline {
                 '''
             }
         }
-        stage('Print Maven Version'){
-            steps {
-                sh '''
-                echo "Maven Version"
-                mvn -version
-                '''
-            }
-        }
+        // stage('Print Maven Version'){
+        //     steps {
+        //         sh '''
+        //         echo "Maven Version"
+        //         mvn -version
+        //         '''
+        //     }
+        // }
         stage('Clone repo'){
             steps{
                 checkout scm: scmGit(branches: [[name: '*/main']], extensions: [], user)
