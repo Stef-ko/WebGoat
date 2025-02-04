@@ -1,9 +1,9 @@
 pipeline {
     agent any
-    tools {
-        // maven 'maven3.9.9'
-        // jdk 'jdk23'
-    }
+    // tools {
+    //     // maven 'maven3.9.9'
+    //     // jdk 'jdk23'
+    // }
     stages {
         stage('Hello World') {
             steps {
