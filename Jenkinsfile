@@ -34,7 +34,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build stage...'
-                sh 'mvn clean install -DskipTests'
+                sh 'mvn package'
+                // sh 'mvn clean install -DskipTests'
             }
         }
     }
