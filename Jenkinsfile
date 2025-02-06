@@ -22,7 +22,7 @@ pipeline {
             steps {
                 sh '''
                 echo "Maven Version"
-                mvn -version
+                sh 'mvn -version'
                 '''
             }
         }
@@ -34,7 +34,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build stage...'
-                sh 'mvn package'
+                sh 'mvn -B -DskipTests clean package'
                 // sh 'mvn clean install -DskipTests'
             }
         }
