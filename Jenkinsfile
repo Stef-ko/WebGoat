@@ -35,7 +35,9 @@ pipeline {
             steps {
                 echo 'Build stage...'
                 git branch: 'main', url: 'https://github.com/Stef-ko/WebGoat.git'
-                sh 'mvn -B -DskipTests clean package'
+                withMaven(maven: 'maven-latest'){
+                    sh 'mvn -B -DskipTests clean package'
+                }
             }
         }
     }
