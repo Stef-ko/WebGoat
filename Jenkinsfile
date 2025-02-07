@@ -34,7 +34,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build stage...'
-                git 'https://github.com/Stef-ko/WebGoat.git'
+                git branch: 'main, url: 'https://github.com/Stef-ko/WebGoat.git'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
