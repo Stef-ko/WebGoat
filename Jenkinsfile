@@ -12,6 +12,7 @@ pipeline {
         }
         stage('Print JAVA_HOME'){
             steps {
+                sh 'git -version'
                 sh 'echo JAVA_HOME=$JAVA_HOME'
                 sh 'which java'
                 sh 'java -version'
