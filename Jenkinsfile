@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         maven '3.9.9'
-        // jdk '17.0.12'
+        jdk '17.0.12'
     }
     stages {
         stage('Hello World') {
@@ -12,10 +12,9 @@ pipeline {
         }
         stage('Print JAVA_HOME'){
             steps {
-                sh '''
-                echo "JAVA_HOME: $JAVA_HOME"
-                java -version
-                '''
+                sh 'echo JAVA_HOME=$JAVA_HOME'
+                sh 'which java'
+                sh 'java -version'
             }
         }
         // stage('Print Maven Version'){
