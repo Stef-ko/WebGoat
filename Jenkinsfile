@@ -10,14 +10,14 @@ pipeline {
                 echo 'Hello World'
             }
         }
-        // stage('Print JAVA_HOME'){
-        //     steps {
-        //         sh '''
-        //         echo "JAVA_HOME: $JAVA_HOME"
-        //         java -version
-        //         '''
-        //     }
-        // }
+        stage('Print JAVA_HOME'){
+            steps {
+                sh '''
+                echo "JAVA_HOME: $JAVA_HOME"
+                java -version
+                '''
+            }
+        }
         // stage('Print Maven Version'){
         //     steps {
         //         sh '''
