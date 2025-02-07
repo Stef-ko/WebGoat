@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools {
         maven '3.9.9'
+        jdk '21'
     }
     stages {
         stage('Hello World') {
