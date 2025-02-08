@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         maven '3.9.9'
-        jdk '17.0.14'
+        jdk '23'
     }
     stages {
         stage('Hello World') {
@@ -12,6 +12,7 @@ pipeline {
         }
         stage('Print JAVA_HOME'){
             steps {
+                sh 'git --version'
                 sh 'echo JAVA_HOME=$JAVA_HOME'
                 sh 'sudo which java'
                 sh 'sudo java -version'
@@ -33,7 +34,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build stage...'
-                sh 'mvn -B -DskipTests clean package'
+                git branch: 'main', url: 'https://github.com/Stef-ko/WebGoat.git'
+                withMaven(maven: '3.9.9'){
+                    sh 'mvn -B -DskipTests clean package'
+                }
             }
         }
     }
