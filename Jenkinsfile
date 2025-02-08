@@ -13,8 +13,8 @@ pipeline {
         stage('Print JAVA_HOME'){
             steps {
                 sh 'echo JAVA_HOME=$JAVA_HOME'
-                sh 'which java'
-                sh 'java -version'
+                sh 'sudo which java'
+                sh 'sudo java -version'
             }
         }
         // stage('Print Maven Version'){
