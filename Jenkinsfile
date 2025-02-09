@@ -14,7 +14,7 @@ pipeline {
             steps {
                 sh 'git --version'
                 sh 'echo JAVA_HOME=$JAVA_HOME'
-                sh 'sudo which java'
+                // sh 'sudo which java'
                 sh 'sudo java -version'
             }
         }
