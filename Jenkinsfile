@@ -27,14 +27,14 @@ pipeline {
                 }
             }
         }
-        // stage('Print JAVA_HOME'){
-        //     steps {
-        //         sh 'git --version'
-        //         sh 'echo JAVA_HOME=$JAVA_HOME'
-        //         sh 'sudo which java'
-        //         sh 'sudo java -version'
-        //     }
-        // }
+        stage('Print JAVA_HOME'){
+            steps {
+                sh 'git --version'
+                sh 'echo JAVA_HOME=$JAVA_HOME'
+                sh 'sudo which java'
+                sh 'sudo java -version'
+            }
+        }
         // stage('Print Maven Version'){
         //     steps {
         //         sh '''
