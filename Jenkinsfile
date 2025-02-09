@@ -12,6 +12,7 @@ pipeline {
         }
         stage('SCM Checkout') {
             steps{
+                echo 'SCM Checkout stage...'
                 git branch: 'main', url: 'https://github.com/Stef-ko/WebGoat.git'
             }
         }
@@ -20,6 +21,7 @@ pipeline {
                 scannerHome = tool 'SonarQube_MA'
             }
             steps {
+                echo 'SonarQube stage...'
                 withSonarQubeEnv(credentialsId: 'SonarQube_MA', installationName: 'SonarQube_MA_Installation') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
