@@ -10,6 +10,14 @@ pipeline {
                 echo 'Hello World'
             }
         }
+        stage('Print JAVA_HOME'){
+            steps {
+                sh 'git --version'
+                sh 'echo JAVA_HOME=$JAVA_HOME'
+                sh 'sudo which java'
+                sh 'sudo java -version'
+            }
+        }
         stage('SCM Checkout') {
             steps{
                 echo 'SCM Checkout stage...'
@@ -25,14 +33,6 @@ pipeline {
                 withSonarQubeEnv(credentialsId: 'SonarQube_MA', installationName: 'SonarQube_MA_Installation') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
-            }
-        }
-        stage('Print JAVA_HOME'){
-            steps {
-                sh 'git --version'
-                sh 'echo JAVA_HOME=$JAVA_HOME'
-                sh 'sudo which java'
-                sh 'sudo java -version'
             }
         }
         // stage('Print Maven Version'){
