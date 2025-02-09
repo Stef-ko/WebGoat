@@ -15,7 +15,7 @@ pipeline {
                 sh 'git --version'
                 sh 'echo JAVA_HOME=$JAVA_HOME'
                 // sh 'sudo which java'
-                sh 'sudo java -version'
+                // sh 'sudo java -version'
             }
         }
         stage('SCM Checkout') {
