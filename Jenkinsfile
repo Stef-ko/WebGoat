@@ -10,14 +10,29 @@ pipeline {
                 echo 'Hello World'
             }
         }
-        stage('Print JAVA_HOME'){
-            steps {
-                sh 'git --version'
-                sh 'echo JAVA_HOME=$JAVA_HOME'
-                sh 'sudo which java'
-                sh 'sudo java -version'
+        stage('SCM Checkout') {
+            steps{
+                git branch: 'main', url: 'https://github.com/Stef-ko/WebGoat.git'
             }
         }
+        stage('SonarQube') {
+            environment {
+                scannerHome = tool 'SonarQube_MA'
+            }
+            steps {
+                withSonarQubeEnv(credentialsId: 'SonarQube_MA', installationName: 'SonarQube_MA_Installation') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }
+        // stage('Print JAVA_HOME'){
+        //     steps {
+        //         sh 'git --version'
+        //         sh 'echo JAVA_HOME=$JAVA_HOME'
+        //         sh 'sudo which java'
+        //         sh 'sudo java -version'
+        //     }
+        // }
         // stage('Print Maven Version'){
         //     steps {
         //         sh '''
@@ -31,14 +46,14 @@ pipeline {
         //         checkout scm: scmGit(branches: [[name: '*/main']], extensions: [], user)
         //     }
         // }
-        stage('Build') {
-            steps {
-                echo 'Build stage...'
-                git branch: 'main', url: 'https://github.com/Stef-ko/WebGoat.git'
-                withMaven(maven: '3.9.9'){
-                    sh 'mvn -B -DskipTests clean package'
-                }
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         echo 'Build stage...'
+        //         git branch: 'main', url: 'https://github.com/Stef-ko/WebGoat.git'
+        //         withMaven(maven: '3.9.9'){
+        //             sh 'mvn -B -DskipTests clean package'
+        //         }
+        //     }
+        // }
     }
 }
