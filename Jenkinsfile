@@ -27,6 +27,8 @@ pipeline {
         stage('SonarQube') {
             environment {
                 scannerHome = tool 'SonarQube_MA'
+                JAVA_HOME= "/var/jenkins_home/tools/hudson.model.JDK/23"
+                PATH = "${JAVA_HOME}/bin:${PATH}"
             }
             steps {
                 echo 'SonarQube stage...'
