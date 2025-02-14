@@ -28,7 +28,7 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps{
-                def mvn = tool 'Default Maven';
+                // def mvn = tool 'Default Maven';
                 withSonarQubeEnv() {
                     sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoat_MA -Dsonar.projectName='WebGoat_MA'"
                 }
