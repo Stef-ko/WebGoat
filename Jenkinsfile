@@ -28,11 +28,11 @@ pipeline {
         }
         stage('Run SonarQube'){
             environment {
-                scannerHome = tool 'lil-sonar-tool';
+                scannerHome = tool 'SonarQube_Installation';
             }
             steps {
                 sh 'echo "Running SonarQube..."'
-                withSonarQubeEnv(credentialsId: 'lil-sonar-credentials', installationName: 'lil sonar installation') {
+                withSonarQubeEnv(credentialsId: 'SonarQube_Token', installationName: 'SonarQube Installation') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
