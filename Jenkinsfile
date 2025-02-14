@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'eclipse-temurin:23-jdk'  // Java 23 for builds
+            args '--user root'
         }
     }
     stages {
