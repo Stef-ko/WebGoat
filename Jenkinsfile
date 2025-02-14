@@ -10,6 +10,12 @@ pipeline {
                 sh 'echo "Hello World"'
             }
         }
+        stage('Clone repo'){
+            steps{
+                sh 'echo "Cloning repo..."'
+                checkout scm: scmGit(branches: [[name: '*/main']], extensions: [], user)
+            }
+        }
         stage('Build') {
             steps {
                 sh 'echo "Build stage..."'
