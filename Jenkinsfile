@@ -27,11 +27,13 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-                    def mvn = tool 'Default Maven';
-                    withSonarQubeEnv() {
-                        sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoat_MA -Dsonar.projectName='WebGoat_MA'"
-                    }
+            steps{
+                def mvn = tool 'Default Maven';
+                withSonarQubeEnv() {
+                    sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoat_MA -Dsonar.projectName='WebGoat_MA'"
                 }
+            }
+        }
         // stage('Run SonarQube'){
         //     environment {
         //         scannerHome = tool 'lil-sonar-tool';
