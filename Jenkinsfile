@@ -13,7 +13,7 @@ pipeline {
         stage('Clone repo'){
             steps{
                 sh 'echo "Cloning repo..."'
-                checkout scm: scmGit(branches: [[name: '*/main']], extensions: [], user)
+                git branch: 'main', url: 'https://github.com/Stef-ko/WebGoat'
             }
         }
         stage('Build') {
