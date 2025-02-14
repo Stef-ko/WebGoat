@@ -32,8 +32,11 @@ pipeline {
             }
             steps {
                 sh 'echo "Running SonarQube..."'
-                withSonarQubeEnv(credentialsId: 'SonarQube_Token', installationName: 'lil sonar installation') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                stage('SonarQube Analysis') {
+                    def mvn = tool 'Default Maven';
+                    withSonarQubeEnv() {
+                        sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoat_MA -Dsonar.projectName='WebGoat_MA'"
+                    }
                 }
             }
         }
