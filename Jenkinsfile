@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'eclipse-temurin'  // Java 23 for builds
+            image 'eclipse-temurin:23-jdk-ubi9-minimal'  // Java 23 for builds
         }
     }
     stages {
