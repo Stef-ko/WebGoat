@@ -26,13 +26,24 @@ pipeline {
                 '''
             }
         }
-        stage('Build') {
+        stage('Run SonarQube'){
+            environment {
+                scannerHome = tool 'lil-sonar-tool';
+            }
             steps {
-                sh 'echo "Build stage..."'
-                sh 'java -version'  // Confirm Java 23 is used
-                sh 'mvn --version'  // Confirm Maven is installed
-                sh 'mvn clean package -DskipTests'
+                sh 'echo "Running SonarQube..."'
+                withSonarQubeEnv(credentialsId: 'lil-sonar-credentials', installationName: 'lil sonar installation') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
             }
         }
+        // stage('Build') {
+        //     steps {
+        //         sh 'echo "Build stage..."'
+        //         sh 'java -version'  // Confirm Java 23 is used
+        //         sh 'mvn --version'  // Confirm Maven is installed
+        //         sh 'mvn clean package -DskipTests'
+        //     }
+        // }
     }
 }
