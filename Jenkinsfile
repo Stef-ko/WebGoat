@@ -25,6 +25,7 @@ pipeline {
                     mvn -version
                 '''
             }
+        }
         stage('SonarQube Analysis') {
             steps {
                 sh 'echo "Running SonarQube..."'
@@ -61,6 +62,5 @@ pipeline {
         //         sh 'mvn --version'  // Confirm Maven is installed
         //         sh 'mvn clean package -DskipTests'
         //     }
-        }
     }
 }
