@@ -27,9 +27,9 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
+            def mvn = tool 'mvn';
             steps {
                 sh 'echo "Running SonarQube..."'
-                def mvn = tool 'mvn';
                 withSonarQubeEnv(credentialsId: 'SonarQube_Token', installationName: 'lil sonar installation') {
                     sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
                 }
