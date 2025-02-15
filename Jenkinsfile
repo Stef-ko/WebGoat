@@ -25,16 +25,24 @@ pipeline {
                     mvn -version
                 '''
             }
-        }
         stage('SonarQube Analysis') {
-            steps{
-                // def mvn = tool 'Default Maven';
+            steps {
                 sh 'echo "Running SonarQube..."'
+                def mvn = tool 'mvn';
                 withSonarQubeEnv(credentialsId: 'SonarQube_Token', installationName: 'lil sonar installation') {
-                    sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoat_MA -Dsonar.projectName='WebGoat_MA'"
+                    sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
                 }
             }
         }
+        // stage('SonarQube Analysis') {
+        //     steps{
+        //         // def mvn = tool 'Default Maven';
+        //         sh 'echo "Running SonarQube..."'
+        //         withSonarQubeEnv(credentialsId: 'SonarQube_Token', installationName: 'lil sonar installation') {
+        //             sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoat_MA -Dsonar.projectName='WebGoat_MA'"
+        //         }
+        //     }
+        // }
         // stage('Run SonarQube'){
         //     environment {
         //         scannerHome = tool 'lil-sonar-tool';
