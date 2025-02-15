@@ -27,7 +27,7 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-            def mvn = tool 'mvn';
+            // def mvn = tool 'mvn';
             steps {
                 sh 'echo "Running SonarQube..."'
                 withSonarQubeEnv(credentialsId: 'SonarQube_Token', installationName: 'lil sonar installation') {
