@@ -32,7 +32,7 @@ pipeline {
                 script {
                     def mvn = tool 'mvn399';
                     sh 'echo "Running SonarQube..."'
-                    withSonarQubeEnv(credentialsId: 'SonarQube_Token', installationName: 'SonarQube_Server') {
+                    withSonarQubeEnv(credentialsId: 'Sonar_Token', installationName: 'SonarQube_Server') {
                         sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
                     }
                 }
