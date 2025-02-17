@@ -1,11 +1,11 @@
 pipeline {
-    agent {
-        any
-        // docker {
-        //     image 'eclipse-temurin:23-jdk'  // Java 23 for builds
-        //     args '--user root'
-        // }
-    }
+    agent any
+    // {
+    //     // docker {
+    //     //     image 'eclipse-temurin:23-jdk'  // Java 23 for builds
+    //     //     args '--user root'
+    //     // }
+    // }
     stages {
         stage('Hello World'){
             steps {
@@ -28,8 +28,8 @@ pipeline {
             }
         }
         stage('SonarQube') {
+            def mvn = tool 'mvn399';
             steps {
-                def mvn = tool 'mvn399';
                 sh 'echo "Running SonarQube..."'
                 withSonarQubeEnv(credentialsId: 'SonarQube_Token', installationName: 'SonarQube_Server') {
                     sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
