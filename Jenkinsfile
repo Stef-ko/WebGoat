@@ -30,8 +30,8 @@ pipeline {
             // def mvn = tool 'mvn';
             steps {
                 sh 'echo "Running SonarQube..."'
-                withSonarQubeEnv(credentialsId: 'SonarQube_Token', installationName: 'lil sonar installation') {
-                    sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
+                withSonarQubeEnv(credentialsId: 'SonarQube_Token', installationName: 'SonarQube_Server') {
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
                 }
             }
         }
