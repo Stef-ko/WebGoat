@@ -1,4 +1,7 @@
 pipeline {
+    options {
+        cleanWs()
+    }
     agent any
     // {
     //     // docker {
