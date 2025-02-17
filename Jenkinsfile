@@ -26,16 +26,24 @@ pipeline {
                 '''
             }
         }
-        stage('SonarQube Analysis') {
-            // def mvn = tool 'mvn';
+        stage('SonarQube') {
             steps {
                 sh 'echo "Running SonarQube..."'
-                sh 'mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install-deps"'
                 withSonarQubeEnv(credentialsId: 'SonarQube_Token', installationName: 'SonarQube_Server') {
                     sh "mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
                 }
             }
         }
+        // stage('SonarQube Analysis') {
+        //     // def mvn = tool 'mvn';
+        //     steps {
+        //         sh 'echo "Running SonarQube..."'
+        //         sh 'mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install-deps"'
+        //         withSonarQubeEnv(credentialsId: 'SonarQube_Token', installationName: 'SonarQube_Server') {
+        //             sh "mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
+        //         }
+        //     }
+        // }
         stage("Quality Gate"){
             steps{
                 ttimeout(time: 1, unit: 'HOURS') {
