@@ -63,5 +63,6 @@ pipeline {
                 sh 'mvn --version'  // Confirm Maven is installed
                 sh 'mvn clean package -DskipTests'
             }
+        }
     }
 }
