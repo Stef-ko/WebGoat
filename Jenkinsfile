@@ -10,13 +10,20 @@ pipeline {
         stage('Hello World'){
             steps {
                 sh 'echo "Hello World"'
-            cleanWs()
             }
         }
         stage('Clone repo'){
             steps{
                 sh 'echo "Cloning repo..."'
                 git branch: 'main', url: 'https://github.com/Stef-ko/WebGoat'
+            }
+        }
+        stage('Print JAVA_HOME'){
+            steps {
+                sh '''
+                echo "JAVA_HOME: $JAVA_HOME"
+                java -version
+                '''
             }
         }
         // stage('Install Maven'){
