@@ -26,16 +26,16 @@ pipeline {
                 '''
             }
         }
-        // stage('SonarQube Analysis') {
-        //     // def mvn = tool 'mvn';
-        //     steps {
-        //         sh 'echo "Running SonarQube..."'
-        //         sh 'mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install-deps"'
-        //         withSonarQubeEnv(credentialsId: 'SonarQube_Token', installationName: 'SonarQube_Server') {
-        //             sh "mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
-        //         }
-        //     }
-        // }
+        stage('SonarQube Analysis') {
+            // def mvn = tool 'mvn';
+            steps {
+                sh 'echo "Running SonarQube..."'
+                sh 'mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install-deps"'
+                withSonarQubeEnv(credentialsId: 'SonarQube_Token', installationName: 'SonarQube_Server') {
+                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
+                }
+            }
+        }
         // stage('SonarQube Analysis') {
         //     steps{
         //         // def mvn = tool 'Default Maven';
@@ -56,13 +56,13 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Build') {
-            steps {
-                sh 'echo "Build stage..."'
-                sh 'java -version'  // Confirm Java 23 is used
-                sh 'mvn --version'  // Confirm Maven is installed
-                sh 'mvn clean package -DskipTests'
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         sh 'echo "Build stage..."'
+        //         sh 'java -version'  // Confirm Java 23 is used
+        //         sh 'mvn --version'  // Confirm Maven is installed
+        //         sh 'mvn clean package -DskipTests'
+        //     }
+        // }
     }
 }
