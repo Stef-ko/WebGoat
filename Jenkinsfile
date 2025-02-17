@@ -18,15 +18,15 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Stef-ko/WebGoat'
             }
         }
-        stage('Install Maven'){
-            steps{
-                sh '''
-                    apt-get update
-                    apt-get install -y maven
-                    mvn -version
-                '''
-            }
-        }
+        // stage('Install Maven'){
+        //     steps{
+        //         sh '''
+        //             apt-get update
+        //             apt-get install -y maven
+        //             mvn -version
+        //         '''
+        //     }
+        // }
         stage('SonarQube') {
             steps {
                 script {
