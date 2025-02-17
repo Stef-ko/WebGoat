@@ -1,7 +1,4 @@
 pipeline {
-    options {
-        cleanWs()
-    }
     agent any
     // {
     //     // docker {
@@ -13,6 +10,7 @@ pipeline {
         stage('Hello World'){
             steps {
                 sh 'echo "Hello World"'
+            cleanWs()
             }
         }
         stage('Clone repo'){
