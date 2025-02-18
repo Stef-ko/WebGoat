@@ -1,5 +1,9 @@
 pipeline {
     agent any
+
+    tools {
+        maven 'maven'
+    }
     // {
     //     // docker {
     //     //     image 'eclipse-temurin:23-jdk'  // Java 23 for builds
@@ -26,6 +30,11 @@ pipeline {
                 '''
             }
         }
+        stage('Build and Test'){
+            sh "${MVN_HOME}/bin/mvn clean verify"
+        }
+
+        
         // stage('Install Maven'){
         //     steps{
         //         sh '''
