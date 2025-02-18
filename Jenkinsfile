@@ -1,10 +1,10 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'maven399'
-        jdk 'jdk23'
-    }
+    // tools {
+    //     maven 'maven399'
+    //     jdk 'jdk23'
+    // }
     // {
     //     // docker {
     //     //     image 'eclipse-temurin:23-jdk'  // Java 23 for builds
