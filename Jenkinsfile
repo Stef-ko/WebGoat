@@ -29,8 +29,8 @@ pipeline {
         stage('Install Maven'){
             steps{
                 sh '''
-                    apt-get update
-                    apt-get install -y maven
+                    sudo apt-get update
+                    sudo apt-get install -y maven
                     mvn -version
                 '''
             }
