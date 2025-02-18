@@ -5,6 +5,10 @@ pipeline {
         maven 'maven399'
         jdk 'jdk23'
     }
+    environment {
+        JAVA_HOME = '/var/jenkins_home/tools/hudson.model.JDK/jdk23'
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
+    }
     // {
     //     // docker {
     //     //     image 'eclipse-temurin:23-jdk'  // Java 23 for builds
@@ -27,9 +31,6 @@ pipeline {
             steps {
                 sh '''
                 echo "JAVA_HOME: $JAVA_HOME"
-                export JAVA_HOME=/var/jenkins_home/tools/hudson.model.JDK/jdk23
-                export PATH=$JAVA_HOME/bin:$PATH
-                echo "JAVA_HOME after setting: $JAVA_HOME"
                 java -version
                 mvn -version
                 '''
