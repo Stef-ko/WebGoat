@@ -31,10 +31,12 @@ pipeline {
             }
         }
         stage('Build and Test'){
-            sh "${MVN_HOME}/bin/mvn clean verify"
+            steps{
+                sh "${MVN_HOME}/bin/mvn clean verify"
+            }
         }
 
-        
+
         // stage('Install Maven'){
         //     steps{
         //         sh '''
