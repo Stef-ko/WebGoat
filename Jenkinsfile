@@ -5,10 +5,6 @@ pipeline {
         maven 'maven399'
         jdk 'jdk23'
     }
-    environment {
-        JAVA_HOME = '/var/jenkins_home/tools/hudson.model.JDK/jdk23'
-        PATH = "${JAVA_HOME}/bin:${env.PATH}"
-    }
     // {
     //     // docker {
     //     //     image 'eclipse-temurin:23-jdk'  // Java 23 for builds
