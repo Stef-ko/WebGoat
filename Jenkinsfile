@@ -1,10 +1,10 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'mvn'
-        jdk 'jdk-1.17'
-    }
+    // tools {
+    //     maven 'mvn'
+    //     jdk 'jdk-1.17'
+    // }
     // {
     //     // docker {
     //     //     image 'eclipse-temurin:23-jdk'  // Java 23 for builds
