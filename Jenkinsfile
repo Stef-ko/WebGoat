@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven'
+        maven 'maven399'
+        jdk 'jdk23'
     }
     // {
     //     // docker {
@@ -27,6 +28,7 @@ pipeline {
                 sh '''
                 echo "JAVA_HOME: $JAVA_HOME"
                 java -version
+                mvn -version
                 '''
             }
         }
