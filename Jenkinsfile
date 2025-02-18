@@ -26,15 +26,15 @@ pipeline {
                 '''
             }
         }
-        stage('Install Maven'){
-            steps{
-                sh '''
-                    apt-get update
-                    apt-get install -y maven
-                    mvn -version
-                '''
-            }
-        }
+        // stage('Install Maven'){
+        //     steps{
+        //         sh '''
+        //             apt-get update
+        //             apt-get install -y maven
+        //             mvn -version
+        //         '''
+        //     }
+        // }
         stage('SonarQube') {
             steps {
                 script {
