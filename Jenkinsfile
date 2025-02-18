@@ -27,6 +27,9 @@ pipeline {
             steps {
                 sh '''
                 echo "JAVA_HOME: $JAVA_HOME"
+                export JAVA_HOME=/var/jenkins_home/tools/hudson.model.JDK/jdk23
+                export PATH=$JAVA_HOME/bin:$PATH
+                echo "JAVA_HOME after setting: $JAVA_HOME"
                 java -version
                 mvn -version
                 '''
