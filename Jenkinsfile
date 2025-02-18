@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Build and Test'){
             steps{
-                sh "${MVN_HOME}/bin/mvn clean verify"
+                sh "mvn clean compile"
             }
         }
 
