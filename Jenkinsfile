@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         maven 'mvn'
-    //     jdk 'jdk23'
+        jdk 'jdk-1.17'
     }
     // {
     //     // docker {
