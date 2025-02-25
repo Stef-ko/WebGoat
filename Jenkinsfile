@@ -23,20 +23,20 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Stef-ko/WebGoat'
             }
         }
-        stage('Print JAVA_HOME'){
-            steps {
-                sh '''
-                echo "JAVA_HOME: $JAVA_HOME"
-                java -version
-                mvn -version
-                '''
-            }
-        }
+        // stage('Print JAVA_HOME'){
+        //     steps {
+        //         sh '''
+        //         echo "JAVA_HOME: $JAVA_HOME"
+        //         java -version
+        //         mvn -version
+        //         '''
+        //     }
+        // }
         stage('SonarQube') {
             steps {
                 script {
-                    def mvn = tool 'maven';
                     sh 'echo "Running SonarQube..."'
+                    def mvn = tool 'maven';
                     withSonarQubeEnv(credentialsId: 'Sonar_Token', installationName: 'SonarQube_Server') {
                         sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
                     }
