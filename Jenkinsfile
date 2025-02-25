@@ -23,15 +23,15 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Stef-ko/WebGoat'
             }
         }
-        // stage('Print JAVA_HOME'){
-        //     steps {
-        //         sh '''
-        //         echo "JAVA_HOME: $JAVA_HOME"
-        //         java -version
-        //         mvn -version
-        //         '''
-        //     }
-        // }
+        stage('Print JAVA_HOME'){
+            steps {
+                sh '''
+                echo "JAVA_HOME: $JAVA_HOME"
+                java -version
+                mvn -version
+                '''
+            }
+        }
         stage('SonarQube') {
             steps {
                 script {
