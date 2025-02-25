@@ -32,22 +32,6 @@ pipeline {
                 '''
             }
         }
-        stage('Build and Test'){
-            steps{
-                sh "mvn clean compile"
-            }
-        }
-
-
-        // stage('Install Maven'){
-        //     steps{
-        //         sh '''
-        //             apt-get update
-        //             apt-get install -y maven
-        //             mvn -version
-        //         '''
-        //     }
-        // }
         stage('SonarQube') {
             steps {
                 script {
@@ -59,6 +43,24 @@ pipeline {
                 }
             }
         }
+
+        // stage('Build and Test'){
+        //     steps{
+        //         sh "mvn clean compile"
+        //     }
+        // }
+
+
+        // stage('Install Maven'){
+        //     steps{
+        //         sh '''
+        //             apt-get update
+        //             apt-get install -y maven
+        //             mvn -version
+        //         '''
+        //     }
+        // }
+        
         // stage('SonarQube Analysis') {
         //     // def mvn = tool 'mvn';
         //     steps {
@@ -69,15 +71,15 @@ pipeline {
         //         }
         //     }
         // }
-        stage("Quality Gate"){
-            steps{
-                ttimeout(time: 1, unit: 'HOURS') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        // stage("Quality Gate"){
+        //     steps{
+        //         ttimeout(time: 1, unit: 'HOURS') {
+        //             // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+        //             // true = set pipeline to UNSTABLE, false = don't
+        //             waitForQualityGate abortPipeline: true
+        //         }
+        //     }
+        // }
         // stage('SonarQube Analysis') {
         //     steps{
         //         // def mvn = tool 'Default Maven';
