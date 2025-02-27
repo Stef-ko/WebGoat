@@ -1,10 +1,10 @@
 pipeline {
     agent any
 
-    // tools {
-    //     maven 'mvn'
-    //     jdk 'jdk-1.17'
-    // }
+    tools {
+        // maven 'mvn'
+        jdk 'jdk23'
+    }
     // {
     //     // docker {
     //     //     image 'eclipse-temurin:23-jdk'  // Java 23 for builds
@@ -31,7 +31,7 @@ pipeline {
                 '''
             }
         }
-        stage('SonarQube') {
+        stage('Building incl. SonarQube') {
             steps {
                 script {
                     sh 'echo "Running SonarQube..."'
