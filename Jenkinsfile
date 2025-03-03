@@ -34,7 +34,7 @@ pipeline {
         stage('Build with Docker and SonarQube') {
             agent {
                 docker {
-                    image 'maven:3.9.3-eclipse-temurin-23'
+                    image 'maven:3.9.6-eclipse-temurin-23-jdk'
                     args '-v $HOME/.m2:/root/.m2'
                 }
             }
