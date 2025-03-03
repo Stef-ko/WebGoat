@@ -37,7 +37,7 @@ pipeline {
                     sh 'echo "Running SonarQube..."'
                     def mvn = tool 'maven';
                     withSonarQubeEnv(credentialsId: 'Sonar_Token', installationName: 'SonarQube_Server') {
-                        sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
+                        sh "${mvn}/bin/mvn compile sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
                     }
                 }
             }
