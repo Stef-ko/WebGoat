@@ -31,17 +31,34 @@ pipeline {
                 '''
             }
         }
-        stage('Building incl. SonarQube') {
+        stage('Build with Docker and SonarQube') {
+            agent {
+                docker {
+                    image 'maven:3.9.6-eclipse-temurin-23'  // Uses Maven with Java 23
+                    args '--rm -v $HOME/.m2:/root/.m2'  // Cache Maven dependencies
+                }
+            }
             steps {
                 script {
-                    sh 'echo "Running SonarQube..."'
-                    def mvn = tool 'maven';
+                    sh 'java -version'  // Verify Java 23 is installed
+                    sh 'mvn -version'   // Verify Maven version
                     withSonarQubeEnv(credentialsId: 'Sonar_Token', installationName: 'SonarQube_Server') {
                         sh "${mvn}/bin/mvn compile sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
                     }
                 }
             }
         }
+        // stage('Building incl. SonarQube') {
+        //     steps {
+        //         script {
+        //             sh 'echo "Running SonarQube..."'
+        //             def mvn = tool 'maven';
+        //             withSonarQubeEnv(credentialsId: 'Sonar_Token', installationName: 'SonarQube_Server') {
+        //                 sh "${mvn}/bin/mvn compile sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
+        //             }
+        //         }
+        //     }
+        // }
 
         // stage('Build and Test'){
         //     steps{
