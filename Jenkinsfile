@@ -42,8 +42,8 @@ pipeline {
                     sh 'java -version'  // Verify Java 23 is installed
                     echo "JAVA_HOME: $JAVA_HOME"
                     // sh 'mvn -version'   // Verify Maven version
-                    sh "${mvn}/bin/mvn clean compile"
-                    sh "${mvn}/bin/mvn compile sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
+                    sh 'mvn clean compile'
+                    sh "mvn compile sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
                 }
             }
         }
