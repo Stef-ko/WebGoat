@@ -42,9 +42,7 @@ pipeline {
                 script {
                     sh 'java -version'  // Verify Java 23 is installed
                     sh 'mvn -version'   // Verify Maven version
-                    withSonarQubeEnv(credentialsId: 'Sonar_Token', installationName: 'SonarQube_Server') {
-                        sh "${mvn}/bin/mvn compile sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
-                    }
+                    sh "${mvn}/bin/mvn compile sonar:sonar -Dsonar.projectKey=WebGoatMA -Dsonar.projectName='WebGoatMA'"
                 }
             }
         }
