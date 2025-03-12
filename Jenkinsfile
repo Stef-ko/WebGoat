@@ -15,7 +15,7 @@ pipeline {
             }
         }
         // WORKING SAST WITH SONARQUBE CLOUD
-        stage('Build and SonarQube Cloud Scan'){
+        stage('SonarQube Cloud Scan'){
             agent {
                 docker { 
                     image 'maven:3.9.9-eclipse-temurin-23'
