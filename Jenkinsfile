@@ -20,12 +20,14 @@ pipeline {
                 sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=stef-ko_webgoat'
             }
         }
-        //stage('Build and SonarQube Scan') {
-        //    steps {
-        //        withSonarQubeEnv(installationName: "SonarScanner") {
-        //          sh "mvn sonar:sonar -Dsonar.projectKey=WebGoat_Jenkins -Dsonar.projectName='WebGoat_Jenkins'"
-        //        }
-        //    }
-        //}
+        stage('Software Composition Analysis'){
+            steps {
+                sh 'echo "SCA..."'
+                // Invoke OWASP Dependency-Check
+                // Ensure that OWASP Dependency-Check is available in the system PATH
+                dependencyCheck additionalArguments: '--prettyPrint', nvdCredentialsId: 'NVDAPIKEY', odcInstallation: 'SCA'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }
     }
 }
